@@ -1,5 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSchool } from "@fortawesome/free-solid-svg-icons";
 
 function Competenze() {
   return (
@@ -12,6 +14,7 @@ function Competenze() {
           aperte
         </Card.Text>
         <div className="text-secondary">
+          <FontAwesomeIcon icon={faSchool} style={{ color: "#acacac" }} />
           <Card.Text className=" **fw-bold**">Soft skill</Card.Text>
           <Card.Text className=" **fw-bold**">Competenze tecniche</Card.Text>
         </div>
@@ -23,4 +26,3 @@ function Competenze() {
   );
 }
 export default Competenze;
-// npm i font-awesome
