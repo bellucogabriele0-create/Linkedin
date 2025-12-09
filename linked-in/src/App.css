@@ -77,3 +77,14 @@
     display: none !important;
   }
 }
+.cover-propic {
+  height: 250px;
+}
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  margin-top: -30px;
+}
+.profile-card {
+  padding-top: 70px !important;
+}
