@@ -5,7 +5,7 @@ import { faSchool } from "@fortawesome/free-solid-svg-icons";
 
 function Competenze() {
   return (
-    <Card>
+    <Card style={{ border: "2px dashed " }}>
       <Card.Body>
         <Card.Title>Competenze</Card.Title>
         <Card.Text>
@@ -18,10 +18,11 @@ function Competenze() {
           <Card.Text className=" **fw-bold**">Soft skill</Card.Text>
           <Card.Text className=" **fw-bold**">Competenze tecniche</Card.Text>
         </div>
-        <Button variant="outline-primary">Aggiungi competenze</Button>
+        <Button variant="outline-primary" className="mt-3 rounded-5">
+          Aggiungi competenze
+        </Button>
       </Card.Body>
     </Card>
   );
 }
-
 export default Competenze;

@@ -6,6 +6,7 @@ import AnalisiAttivita from "./AnalisiAttivita";
 import { useDispatch } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { useEffect } from "react";
+import Esperienze from "./Esperienze";
 
 const ProfilePage = function () {
   const dispatch = useDispatch();
@@ -20,8 +21,9 @@ const ProfilePage = function () {
           {/* HEADERPROFILE */}
           <HeaderProfile />
           <AnalisiAttivita />
-          <Competenze />
+          <Esperienze />
           <Formazione />
+          <Competenze />
         </Col>
         <Col xs={12} md={3}>
           {/* ASIDE con Lingua del Profilo Potrebbero interessarti etc.  */}
