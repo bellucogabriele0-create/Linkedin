@@ -1,6 +1,8 @@
 import { Container, Col, Row } from "react-bootstrap";
 import Competenze from "./Competenze";
 import Formazione from "./Formazione";
+import HeaderProfile from "./HeaderProfile";
+import AnalisiAttivita from "./AnalisiAttivita";
 
 const ProfilePage = function () {
   return (
@@ -8,6 +10,8 @@ const ProfilePage = function () {
       <Row>
         <Col xs={12} md={9}>
           {/* HEADERPROFILE */}
+          <HeaderProfile />
+          <AnalisiAttivita />
           <Competenze />
           <Formazione />
         </Col>
@@ -18,4 +22,5 @@ const ProfilePage = function () {
     </Container>
   );
 };
+
 export default ProfilePage;
