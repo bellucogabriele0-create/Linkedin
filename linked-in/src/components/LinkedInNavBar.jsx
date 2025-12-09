@@ -1,11 +1,9 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import "./app.css";
 
-export default function NavBar() {
+export default function LinkedInNavBar() {
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm px-3 linkedin-nav">
-      <Container fluid>
-
+      <Container>
         <Navbar.Brand href="/">
           <i className="bi bi-linkedin linkedin-logo"></i>
         </Navbar.Brand>
@@ -16,7 +14,6 @@ export default function NavBar() {
         </div>
 
         <Nav className="ms-auto align-items-center nav-icons">
-
           <div className="icon-item">
             <i className="bi bi-house-door"></i>
             <span className="d-none d-lg-block">Home</span>
@@ -53,7 +50,6 @@ export default function NavBar() {
             <i className="bi bi-grid-3x3-gap-fill"></i>
           </div>
         </Nav>
-
       </Container>
     </Navbar>
   );

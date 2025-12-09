@@ -6,7 +6,7 @@ const HeaderProfile = function () {
     return currentState.profile.content;
   });
   return (
-    <Row>
+    <Row className="my-3">
       <Col xs={12}>
         <Card className="rounded-3">
           <Card.Img
