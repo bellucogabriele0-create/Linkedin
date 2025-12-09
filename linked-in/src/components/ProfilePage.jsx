@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 const ProfilePage = function () {
   return (
@@ -14,3 +14,4 @@ const ProfilePage = function () {
     </Container>
   );
 };
+export default ProfilePage;
