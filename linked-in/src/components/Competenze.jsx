@@ -14,7 +14,6 @@ function Competenze() {
           aperte
         </Card.Text>
         <div className="text-secondary">
-          <FontAwesomeIcon icon={faSchool} style={{ color: "#acacac" }} />
           <Card.Text className=" **fw-bold**">Soft skill</Card.Text>
           <Card.Text className=" **fw-bold**">Competenze tecniche</Card.Text>
         </div>
