@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import "font-awesome/css/font-awesome.min.css";
+
 function App() {
   return (
     <Provider store={store}>
