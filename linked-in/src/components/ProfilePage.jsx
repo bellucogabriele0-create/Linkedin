@@ -3,6 +3,7 @@ import Competenze from "./Competenze";
 import Formazione from "./Formazione";
 import HeaderProfile from "./HeaderProfile";
 import AnalisiAttivita from "./AnalisiAttivita";
+import Esperienze from "./Esperienze";
 
 const ProfilePage = function () {
   return (
@@ -12,8 +13,9 @@ const ProfilePage = function () {
           {/* HEADERPROFILE */}
           <HeaderProfile />
           <AnalisiAttivita />
-          <Competenze />
+          <Esperienze />
           <Formazione />
+          <Competenze />
         </Col>
         <Col xs={12} md={3}>
           {/* ASIDE con Lingua del Profilo Potrebbero interessarti etc.  */}
