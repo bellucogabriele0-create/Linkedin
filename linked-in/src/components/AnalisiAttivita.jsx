@@ -2,7 +2,7 @@ import { Card, Row, Col, Button } from "react-bootstrap";
 
 const AnalisiAttivita = () => {
   return (
-    <div className="p-3">
+    <Row className="p-3">
       <Card className="mb-4 shadow-sm">
         <Card.Body className="pb-0">
           <Card.Title className="fw-bold">Analisi</Card.Title>
@@ -95,7 +95,7 @@ const AnalisiAttivita = () => {
           </Row>
         </Card.Body>
       </Card>
-    </div>
+    </Row>
   );
 };
 export default AnalisiAttivita;
