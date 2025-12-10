@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import ExperienceModal from "./ExperienceModal";
 
 const Esperienze = () => {
   return (
