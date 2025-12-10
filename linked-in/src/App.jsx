@@ -4,12 +4,15 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LinkedInNavBar from "./components/LinkedInNavBar";
 import ProfilePage from "./components/ProfilePage";
+
 import "font-awesome/css/font-awesome.min.css";
 
 function App() {
   return (
     <Provider store={store}>
+      <LinkedInNavBar />
       <BrowserRouter>
         {/* NAV */}
         <Routes>
