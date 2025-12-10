@@ -2,7 +2,7 @@ export const GET_PROFILE = "GET_PROFILE";
 export const GET_PROFILE_EXP = "GET_PROFILE_EXP";
 
 export const getProfile = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // const currentState = getState(); servirà per fetch su profilo specifico
     const endpoint = "https://striveschool-api.herokuapp.com/api/profile/me";
     const token =
@@ -25,7 +25,7 @@ export const getProfile = () => {
 };
 
 export const getProfileExperiences = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     const endpoint = "https://striveschool-api.herokuapp.com/api/profile/";
     let userID = "6937e390d322f500151076b9";
     const finalEndpoint = endpoint + userID + "/experiences";
