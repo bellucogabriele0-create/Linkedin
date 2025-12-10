@@ -6,7 +6,7 @@ import store from "./redux/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LinkedInNavBar from "./components/LinkedInNavBar";
 import ProfilePage from "./components/ProfilePage";
-
+import Phome from "./PROVAG/Phome";
 import "font-awesome/css/font-awesome.min.css";
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
       <BrowserRouter>
         {/* NAV */}
         <Routes>
-          <Route path="/" element={<ProfilePage />} />
+          <Route path="/ProfilePage" element={<ProfilePage />} />
+          <Route path="/" element={<Phome />} />
         </Routes>
         {/* FOOTER */}
       </BrowserRouter>
