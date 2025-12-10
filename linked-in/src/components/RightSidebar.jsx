@@ -39,7 +39,7 @@ export default function RightSidebar() {
   ];
 
   return (
-    <div className="d-flex flex-column gap-2">
+    <div className="d-flex flex-column gap-2 mt-3">
       {/* --- CARD: LINKEDIN NOTIZIE --- */}
       <div className="card border-0 shadow-sm">
         <div className="card-body pb-2">

@@ -1,6 +1,6 @@
 export default function LeftSidebar() {
   return (
-    <div className="d-flex flex-column gap-2">
+    <div className="d-flex flex-column gap-2 mt-3">
       {/* --- CARD PROFILO --- */}
       <div className="card border-0 shadow-sm">
         <div

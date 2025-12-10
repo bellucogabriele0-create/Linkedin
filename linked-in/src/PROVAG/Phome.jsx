@@ -10,7 +10,8 @@ import { useEffect } from "react";
 import Paggiungi from "./Paggiungi";
 import Pamici from "./Pamici";
 import Ppost from "./Ppost";
-
+import RightSidebar from "../components/RightSidebar";
+import LeftSidebar from "../components/LeftSidebar";
 const Phome = function () {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,7 +22,7 @@ const Phome = function () {
     <Container>
       <Row>
         <Col xs={12} md={3}>
-          {/* ASIDE con Lingua del Profilo Potrebbero interessarti etc.  */}
+          <LeftSidebar />
         </Col>
         <Col xs={12} md={6}>
           <Paggiungi />
@@ -34,7 +35,7 @@ const Phome = function () {
           <Ppost />
         </Col>
         <Col xs={12} md={3}>
-          {/* ASIDE con Lingua del Profilo Potrebbero interessarti etc.  */}
+          <RightSidebar />
         </Col>
       </Row>
     </Container>
