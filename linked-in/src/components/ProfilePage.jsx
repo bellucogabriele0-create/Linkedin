@@ -3,9 +3,17 @@ import Competenze from "./Competenze";
 import Formazione from "./Formazione";
 import HeaderProfile from "./HeaderProfile";
 import AnalisiAttivita from "./AnalisiAttivita";
+import { useDispatch } from "react-redux";
+import { getProfile } from "../redux/actions";
+import { useEffect } from "react";
 import Esperienze from "./Esperienze";
 
 const ProfilePage = function () {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfile());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Container>
       <Row>

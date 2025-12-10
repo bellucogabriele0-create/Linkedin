@@ -1,8 +1,12 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const HeaderProfile = function () {
+  const profileData = useSelector((currentState) => {
+    return currentState.profile.content;
+  });
   return (
-    <Row>
+    <Row className="my-3">
       <Col xs={12}>
         <Card className="rounded-3">
           <Card.Img
@@ -13,14 +17,19 @@ const HeaderProfile = function () {
           <div className="position-relative">
             <div className="position-absolute start-0 translate-middle-y ms-3">
               <Card.Img
-                src="https://placecats.com/250/250"
+                src={profileData.image}
                 className="rounded-circle border border-5 border-white object-fit-cover profile-pic"
               />
             </div>
           </div>
           <Card.Body className="profile-card">
-            <Card.Title>Nome Cognome</Card.Title>
-            <Card.Text>BIO</Card.Text>
+            <Card.Title>
+              {profileData.name} {profileData.surname}
+            </Card.Title>
+            <Card.Subtitle>@{profileData.username}</Card.Subtitle>
+            <Card.Text>{profileData.area}</Card.Text>
+            <Card.Text>{profileData.title}</Card.Text>
+            <Card.Text>{profileData.bio}</Card.Text>
             <Row>
               <Col>
                 <Button variant="primary" className="rounded-pill me-1">
