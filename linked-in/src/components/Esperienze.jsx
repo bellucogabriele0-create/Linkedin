@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import ExperienceModal from "./ExperienceModal";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProfileExperiences } from "../redux/actions";
 const Esperienze = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfileExperiences());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const expData = useSelector((currentState) => {
+    return currentState.profile.experiences;
+  });
+  console.log(expData);
   return (
     <>
       <Card className="mb-3">
@@ -44,37 +54,51 @@ const Esperienze = () => {
               </Button>
             </div>
           </div>
-
-          <div className="d-flex align-items-start mt-3">
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                marginRight: "12px",
-                backgroundColor: "#eef3f8",
-                borderRadius: "4px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <span style={{ fontSize: "20px" }}>
-                <img></img>
-              </span>
-            </div>
-
-            <div>
-              <h6
-                className="mb-0"
-                style={{ fontWeight: "600", fontSize: "16px" }}
-              >
-                Studente diplomato
-              </h6>
-              <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                Vessuvio J
-              </p>
-            </div>
-          </div>
+          <Row>
+            {expData.map((exp) => {
+              return (
+                <div className="d-flex align-items-start mt-3" key={exp._id}>
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      marginRight: "12px",
+                      backgroundColor: "#eef3f8",
+                      borderRadius: "4px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "20px" }}>
+                      <img src="https://placecats.com/50/50" />
+                    </span>
+                  </div>
+                  <Col sm={12}>
+                    <h6
+                      className="mb-0"
+                      style={{ fontWeight: "600", fontSize: "16px" }}
+                    >
+                      {exp.role}
+                    </h6>
+                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
+                      {exp.company}
+                    </p>
+                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
+                      dal {exp.startDate.slice(0, 10)} al{" "}
+                      {exp.endDate.slice(0, 10)}
+                    </p>
+                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
+                      {exp.area}
+                    </p>
+                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
+                      {exp.description}
+                    </p>
+                  </Col>
+                </div>
+              );
+            })}
+          </Row>
         </Card.Body>
       </Card>
     </>
