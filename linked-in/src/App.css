@@ -69,13 +69,20 @@
 }
 
 @media (max-width: 991px) {
-  .search-container {
-    display: none;
+  .linkedin-nav {
+    height: auto;    
+    padding: 6px 0;  
   }
 
-  .nav-icons .icon-item span {
-    display: none !important;
+  .nav-icons .icon-item {
+    margin: 0 6px;   
   }
+
+  .icon-item i {
+    font-size: 22px; 
+  }
+}
+
 }
 .cover-propic {
   height: 250px;

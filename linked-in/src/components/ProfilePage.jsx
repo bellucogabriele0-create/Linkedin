@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { useEffect } from "react";
 import Esperienze from "./Esperienze";
+import ExperienceForm from "./ExperienceForm";
 
 const ProfilePage = function () {
   const dispatch = useDispatch();
