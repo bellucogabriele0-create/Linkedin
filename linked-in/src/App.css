@@ -16,6 +16,7 @@
   align-items: center;
   width: 260px;
 }
+
 .search-container input {
   border: none;
   background: transparent;
@@ -33,6 +34,7 @@
   cursor: pointer;
   font-size: 12px;
 }
+
 .icon-item i {
   font-size: 20px;
 }
@@ -69,17 +71,31 @@
 }
 
 @media (max-width: 991px) {
+
   .linkedin-nav {
-    height: auto;    
-    padding: 6px 0;  
+    height: 56px !important;
+    padding: 0 !important;
   }
 
-  .nav-icons .icon-item {
-    margin: 0 6px;   
+  .nav-icons .icon-item,
+  .profile-item {
+    margin: 0 4px !important;
   }
 
   .icon-item i {
-    font-size: 22px; 
+    font-size: 26px !important;
+  }
+
+  .nav-icons span,
+  .profile-item span {
+    display: none !important;
+  }
+
+  .notification-badge {
+    font-size: 11px;
+    padding: 1px 5px;
+    top: -3px;
+    right: -6px;
   }
 }
 
