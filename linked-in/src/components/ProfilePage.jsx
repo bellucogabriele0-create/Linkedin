@@ -3,29 +3,34 @@ import Competenze from "./Competenze";
 import Formazione from "./Formazione";
 import HeaderProfile from "./HeaderProfile";
 import AnalisiAttivita from "./AnalisiAttivita";
-import { useDispatch } from "react-redux";
+import Esperienze from "./Esperienze";
+import ProfileSidebar from "./ProfileSidebar";
+import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { useEffect } from "react";
-import Esperienze from "./Esperienze";
-import ExperienceForm from "./ExperienceForm";
-import ProfileSidebar from "./ProfileSidebar";
+import { useParams, useLocation } from "react-router-dom";
 
-const ProfilePage = function () {
+const ProfilePage = () => {
   const dispatch = useDispatch();
+  const { userId } = useParams();
+  const location = useLocation();
+  const loggedUser = useSelector((state) => state.profile.content._id);
+
+  const viewingMyProfile = location.pathname === "/ProfilePage" || !userId;
+
   useEffect(() => {
-    dispatch(getProfile());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getProfile(userId));
+  }, [dispatch, userId]);
+
   return (
     <Container>
       <Row>
         <Col xs={12} md={9}>
-          {/* HEADERPROFILE */}
           <HeaderProfile />
           <AnalisiAttivita />
           <Esperienze />
-          <Formazione />
-          <Competenze />
+          {viewingMyProfile && <Formazione />}
+          {viewingMyProfile && <Competenze />}
         </Col>
         <Col xs={12} md={3}>
           <ProfileSidebar />
