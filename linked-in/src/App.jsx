@@ -17,6 +17,7 @@ function App() {
         {/* NAV */}
         <Routes>
           <Route path="/ProfilePage" element={<ProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/" element={<Phome />} />
         </Routes>
         {/* FOOTER */}
