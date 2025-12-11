@@ -8,6 +8,7 @@ import { getProfile } from "../redux/actions";
 import { useEffect } from "react";
 import Esperienze from "./Esperienze";
 import ExperienceForm from "./ExperienceForm";
+import ProfileSidebar from "./ProfileSidebar";
 
 const ProfilePage = function () {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const ProfilePage = function () {
           <Competenze />
         </Col>
         <Col xs={12} md={3}>
-          {/* ASIDE con Lingua del Profilo Potrebbero interessarti etc.  */}
+          <ProfileSidebar />
         </Col>
       </Row>
     </Container>
