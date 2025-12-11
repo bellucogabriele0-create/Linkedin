@@ -23,37 +23,40 @@ const Pamici = () => {
     <Card className="p-3 my-3">
       <h6 className="fw-bold mb-3">Consigli per te</h6>
 
-      {friends.slice(0, 3).map((friend) => (
-        <Row key={friend._id} className="align-items-center mb-3">
-          <Col xs="auto">
-            <Image
-              src={friend.image || "https://placebear.com/100/100"}
-              roundedCircle
-              style={{ width: "48px", height: "48px" }}
-            />
-          </Col>
-
-          <Col
-            style={{ cursor: "pointer" }}
-            onClick={() => handleClick(friend._id)}
-          >
-            <div className="fw-semibold">
-              {friend.name} {friend.surname}
-            </div>
-            <div style={{ color: "grey" }}>{friend.title || "Professione"}</div>
-          </Col>
-
-          <Col xs="auto">
-            <Button
-              variant="outline-primary"
-              size="sm"
-              className="rounded-pill px-3"
+      {[...friends]
+        .reverse()
+        .slice(0, 3)
+        .map((friend) => (
+          <Row key={friend._id} className="align-items-center mb-3">
+            <Col xs="auto">
+              <Image
+                src={friend.image}
+                roundedCircle
+                style={{ width: "48px", height: "48px" }}
+              />
+            </Col>
+            <Col
+              style={{ cursor: "pointer" }}
+              onClick={() => handleClick(friend._id)}
             >
-              + Segui
-            </Button>
-          </Col>
-        </Row>
-      ))}
+              <div className="fw-semibold">
+                {friend.name} {friend.surname}
+              </div>
+              <div style={{ color: "grey" }}>
+                {friend.title || "Professione"}
+              </div>
+            </Col>
+            <Col xs="auto">
+              <Button
+                variant="outline-primary"
+                size="sm"
+                className="rounded-pill px-3"
+              >
+                + Segui
+              </Button>
+            </Col>
+          </Row>
+        ))}
     </Card>
   );
 };
