@@ -1,11 +1,25 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
+ 
 
 export default function LinkedInNavBar() {
-  return (
+  const profile = useSelector((state) => state.profile.content);
+ const initial = profile?.name
+    ? profile.name.charAt(0).toUpperCase()
+    : "U";
+    return (
     <>
 
       <div className="mobile-top-nav d-lg-none">
-        <div className="profile-circle-small">K</div>
+     <div className="profile-circle-small">
+  {profile?.image ? (
+    <img src={profile.image} alt="profile" className="profile-img-small" />
+  ) : (
+    initial
+  )}
+</div>
+
 
         <div className="search-box-mobile">
           <i className="bi bi-search"></i>
@@ -62,8 +76,12 @@ export default function LinkedInNavBar() {
               <span>Notifiche</span>
             </div>
 
-            <div className="profile-item">
-              <div className="profile-circle">K</div>
+             <div className="profile-item">
+              {profile?.image ? (
+                <img src={profile.image} alt="profile" className="profile-img" />
+              ) : (
+                <div className="profile-circle">{initial}</div>
+              )}
               <span>Tu</span>
             </div>
 
