@@ -4,17 +4,33 @@ import ExperienceModal from "./ExperienceModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfileExperiences } from "../redux/actions";
+
 const Esperienze = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [experienceIdToEdit, setExperienceIdToEdit] = useState(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProfileExperiences());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const expData = useSelector((currentState) => {
     return currentState.profile.experiences;
   });
+
+  const openModal = (expId = null) => {
+    setExperienceIdToEdit(expId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setExperienceIdToEdit(null);
+  };
+
   console.log(expData);
+
   return (
     <>
       <Card className="mb-3">
@@ -33,12 +49,15 @@ const Esperienze = () => {
                   background: "none",
                   color: "black",
                 }}
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => openModal()}
               >
                 <i className="bi bi-plus fs-4"></i>
               </Button>
               {isModalOpen && (
-                <ExperienceModal close={() => setIsModalOpen(false)} />
+                <ExperienceModal
+                  close={closeModal}
+                  espid={experienceIdToEdit}
+                />
               )}
 
               <Button
@@ -57,7 +76,12 @@ const Esperienze = () => {
           <Row>
             {expData.map((exp) => {
               return (
-                <div className="d-flex align-items-start mt-3" key={exp._id}>
+                <div
+                  className="d-flex align-items-start mt-3"
+                  key={exp._id}
+                  onClick={() => openModal(exp._id)}
+                  style={{ cursor: "pointer" }}
+                >
                   <div
                     style={{
                       width: "48px",
@@ -71,7 +95,10 @@ const Esperienze = () => {
                     }}
                   >
                     <span style={{ fontSize: "20px" }}>
-                      <img src="https://placecats.com/50/50" />
+                      <img
+                        src="https://placecats.com/50/50"
+                        alt="Company logo"
+                      />
                     </span>
                   </div>
                   <Col sm={12}>
@@ -85,8 +112,10 @@ const Esperienze = () => {
                       {exp.company}
                     </p>
                     <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                      dal {exp.startDate.slice(0, 10)} al{" "}
-                      {exp.endDate.slice(0, 10)}
+                      dal {exp.startDate ? exp.startDate.slice(0, 10) : "N/A"}
+                      {exp.endDate
+                        ? ` al ${exp.endDate.slice(0, 10)}`
+                        : " - In corso"}
                     </p>
                     <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
                       {exp.area}

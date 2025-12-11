@@ -2,15 +2,17 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ExperienceForm from "./ExperienceForm";
 
-const ExperienceModal = function ({ close }) {
+const ExperienceModal = function ({ close, espid }) {
   return (
     <Modal show onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>Modifica Esperienza</Modal.Title>
+        <Modal.Title>
+          {espid ? "Modifica Esperienza" : "Aggiungi Esperienza"}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <ExperienceForm />
+        <ExperienceForm experienceId={espid} close={close} />
       </Modal.Body>
 
       <Modal.Footer>
