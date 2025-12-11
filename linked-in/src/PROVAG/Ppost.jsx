@@ -7,7 +7,7 @@ function Ppost() {
   const [error, setError] = useState(null);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTNhN2UzOThkYTViODAwMTVmMjU5MGIiLCJpYXQiOjE3NjU0NDEwODEsImV4cCI6MTc2NjY1MDY4MX0.jXJiwwf2N8dqjo8Q_DtF8aKTOPknY9XCI_QU87Lv24I";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTNhOTRlZDhkYTViODAwMTVmMjU5MTgiLCJpYXQiOjE3NjU0NDY4OTMsImV4cCI6MTc2NjY1NjQ5M30.FO1eZlUO3haf8iza95j-cL651sF3QIvICdC6_GkvslU";
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,7 +16,7 @@ function Ppost() {
           "https://striveschool-api.herokuapp.com/api/posts/",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // USO DEL TOKEN
             },
           }
         );

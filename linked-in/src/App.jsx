@@ -12,9 +12,9 @@ import "font-awesome/css/font-awesome.min.css";
 function App() {
   return (
     <Provider store={store}>
-      <LinkedInNavBar />
       <BrowserRouter>
         {/* NAV */}
+        <LinkedInNavBar />
         <Routes>
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />

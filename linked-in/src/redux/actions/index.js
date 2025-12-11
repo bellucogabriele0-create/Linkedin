@@ -4,10 +4,13 @@ export const GET_PROFILE_EXP = "GET_PROFILE_EXP";
 export const GET_FRIENDS = "GET_FRIENDS";
 export const GET_FRIENDS_ERROR = "GET_FRIENDS_ERROR";
 // _____
-export const getProfile = () => {
+export const getProfile = (
+  // ATTENZIONE
+  userId = "me"
+) => {
   return (dispatch) => {
     // const currentState = getState(); servirà per fetch su profilo specifico
-    const endpoint = "https://striveschool-api.herokuapp.com/api/profile/me";
+    const endpoint = `https://striveschool-api.herokuapp.com/api/profile/${userId}`;
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM3ZTM5MGQzMjJmNTAwMTUxMDc2YjkiLCJpYXQiOjE3NjUyOTA2NTQsImV4cCI6MTc2NjUwMDI1NH0.VJvGSSmDcPbUfZIrUmeBRIuPb4Zj0J41kYkWAJBR4pc";
     fetch(endpoint, { headers: { Authorization: `Bearer ${token}` } })
@@ -26,7 +29,6 @@ export const getProfile = () => {
       });
   };
 };
-
 export const getProfileExperiences = () => {
   return (dispatch) => {
     const endpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -101,4 +103,3 @@ export const getProfileById = (userId) => {
     }
   };
 };
-// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

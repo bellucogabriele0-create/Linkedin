@@ -14,8 +14,8 @@ function Competenze() {
           aperte
         </Card.Text>
         <div className="text-secondary">
-          <Card.Text className=" **fw-bold**">Soft skill</Card.Text>
-          <Card.Text className=" **fw-bold**">Competenze tecniche</Card.Text>
+          <Card.Text className="fw-bold">Soft skill</Card.Text>
+          <Card.Text className="fw-bold">Competenze tecniche</Card.Text>
         </div>
         <Button variant="outline-primary" className="mt-3 rounded-5">
           Aggiungi competenze
