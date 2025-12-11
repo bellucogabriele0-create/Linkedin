@@ -16,7 +16,7 @@ function Ppost() {
           "https://striveschool-api.herokuapp.com/api/posts/",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // USO DEL TOKEN
+              Authorization: `Bearer ${token}`,
             },
           }
         );
