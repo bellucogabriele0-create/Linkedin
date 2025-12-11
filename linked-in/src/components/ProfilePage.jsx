@@ -5,7 +5,7 @@ import HeaderProfile from "./HeaderProfile";
 import AnalisiAttivita from "./AnalisiAttivita";
 import Esperienze from "./Esperienze";
 import ProfileSidebar from "./ProfileSidebar";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProfile } from "../redux/actions";
 import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const location = useLocation();
-  const loggedUser = useSelector((state) => state.profile.content._id);
+  // const loggedUser = useSelector((state) => state.profile.content._id);
 
   const viewingMyProfile = location.pathname === "/ProfilePage" || !userId;
 
