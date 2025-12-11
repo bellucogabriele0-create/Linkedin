@@ -1,4 +1,24 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../redux/actions/index";
+
 export default function LeftSidebar() {
+  const dispatch = useDispatch();
+
+  const profile = useSelector((state) => state.profile.content);
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
+  // Dati dinamici con fallback
+  const fullName = profile?.name
+    ? `${profile.name} ${profile.surname}`
+    : "Caricamento...";
+  const title = profile?.title || "Titolo non disponibile";
+  const area = profile?.area || "Località non disponibile";
+  const image = profile?.image || "https://placehold.co/80";
+
   return (
     <div className="d-flex flex-column gap-2 mt-3">
       {/* --- CARD PROFILO --- */}
@@ -14,26 +34,24 @@ export default function LeftSidebar() {
 
         <div className="card-body text-center">
           <img
-            src="https://via.placeholder.com/80"
+            src={image}
             className="rounded-circle border border-2 border-white mb-2 mt-n5"
             alt="avatar"
             style={{ width: "80px", height: "80px", objectFit: "cover" }}
           />
 
-          <h6 className="fw-bold mb-0">Lorenzo Di Lorenzo</h6>
+          <h6 className="fw-bold mb-0">{fullName}</h6>
 
-          <p className="text-muted small mb-1">Receptionist</p>
+          <p className="text-muted small mb-1">{title}</p>
 
-          <p className="text-muted small mb-3">Bologna, Emilia Romagna</p>
+          <p className="text-muted small mb-3">{area}</p>
 
-          {/* Bottone Esperienza */}
           <button className="btn btn-outline-secondary w-100 py-1 d-flex align-items-center justify-content-center gap-1">
             <i className="bi bi-plus-lg"></i> Esperienza
           </button>
         </div>
       </div>
 
-      {/* --- CARD COLLEGAMENTI --- */}
       <div className="card border-0 shadow-sm">
         <div className="card-body">
           <div className="d-flex justify-content-between">
@@ -44,7 +62,6 @@ export default function LeftSidebar() {
         </div>
       </div>
 
-      {/* --- CARD PREMIUM --- */}
       <div className="card border-0 shadow-sm">
         <div className="card-body small">
           <p className="fw-semibold mb-1">
@@ -60,7 +77,6 @@ export default function LeftSidebar() {
         </div>
       </div>
 
-      {/* ---  MENU --- */}
       <div className="card border-0 shadow-sm">
         <div className="list-group list-group-flush small">
           <button className="list-group-item list-group-item-action d-flex align-items-center gap-2">
