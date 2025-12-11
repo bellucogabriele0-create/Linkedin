@@ -18,10 +18,6 @@ export default function LinkedInNavBar() {
             <span className="badge-mobile">1</span>
           </div>
 
-          <div className="icon-wrapper position-relative">
-            <i className="bi bi-bell"></i>
-            <span className="badge-mobile">1</span>
-          </div>
         </div>
       </div>
 
@@ -32,7 +28,7 @@ export default function LinkedInNavBar() {
             <i className="bi bi-linkedin linkedin-logo"></i>
           </Navbar.Brand>
 
-          <div className="search-container d-flex">
+          <div className="search-container">
             <i className="bi bi-search"></i>
             <input type="text" placeholder="Cerca" />
           </div>
