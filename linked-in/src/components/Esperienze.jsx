@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { Card, Button, Col, Row } from "react-bootstrap";
 import ExperienceModal from "./ExperienceModal";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getProfileExperiences } from "../redux/actions";
+import { useSelector } from "react-redux";
 
-const Esperienze = () => {
+const Esperienze = ({ viewingMyProfile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [experienceIdToEdit, setExperienceIdToEdit] = useState(null);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProfileExperiences());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const expData = useSelector((currentState) => {
-    return currentState.profile.experiences;
-  });
+  const expData = useSelector((state) => state.profile.experiences);
 
   const openModal = (expId = null) => {
+    if (!viewingMyProfile) return;
     setExperienceIdToEdit(expId);
     setIsModalOpen(true);
   };
@@ -29,108 +20,83 @@ const Esperienze = () => {
     setExperienceIdToEdit(null);
   };
 
-  console.log(expData);
-
   return (
-    <>
-      <Card className="mb-3">
-        <Card.Body>
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h5 style={{ fontWeight: "600", fontSize: "20px", margin: 0 }}>
-              Esperienza
-            </h5>
+    <Card className="mb-3">
+      <Card.Body>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h5 style={{ fontWeight: "600", fontSize: "20px", margin: 0 }}>
+            Esperienza
+          </h5>
 
+          {viewingMyProfile && (
+            <Button variant="link" className="p-0" onClick={() => openModal()}>
+              <i className="bi bi-plus fs-4"></i>
+            </Button>
+          )}
+        </div>
+
+        <Row>
+          {expData.length === 0 ? (
             <div>
-              <Button
-                variant="link"
-                className="p-0 me-2"
-                style={{
-                  border: "none",
-                  background: "none",
-                  color: "black",
-                }}
-                onClick={() => openModal()}
-              >
-                <i className="bi bi-plus fs-4"></i>
-              </Button>
-              {isModalOpen && (
-                <ExperienceModal
-                  close={closeModal}
-                  espid={experienceIdToEdit}
-                />
-              )}
-
-              <Button
-                variant="link"
-                className="p-0"
-                style={{
-                  border: "none",
-                  background: "none",
-                  color: "black",
-                }}
-              >
-                <i className="bi bi-pencil-fill fs-5 p-2"></i>
-              </Button>
+              <p className="mt-3 fs-5 fw-medium m-0">Nessuna Esperienza</p>
+              <p className="mt-1">Le esperienze condivise appariranno qui</p>
             </div>
-          </div>
-          <Row>
-            {expData.map((exp) => {
-              return (
+          ) : (
+            expData.map((exp) => (
+              <div
+                className="d-flex align-items-start mt-3"
+                key={exp._id}
+                onClick={
+                  viewingMyProfile ? () => openModal(exp._id) : undefined
+                }
+                style={{ cursor: viewingMyProfile ? "pointer" : "default" }}
+              >
                 <div
-                  className="d-flex align-items-start mt-3"
-                  key={exp._id}
-                  onClick={() => openModal(exp._id)}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    marginRight: "12px",
+                    backgroundColor: "#eef3f8",
+                    borderRadius: "4px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    overflow: "hidden",
+                  }}
                 >
-                  <div
+                  <img
+                    src={exp.image || "https://placehold.co/50x50?text=Logo"}
                     style={{
-                      width: "48px",
-                      height: "48px",
-                      marginRight: "12px",
-                      backgroundColor: "#eef3f8",
-                      borderRadius: "4px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
                     }}
-                  >
-                    <span style={{ fontSize: "20px" }}>
-                      <img
-                        src="https://placecats.com/50/50"
-                        alt="Company logo"
-                      />
-                    </span>
-                  </div>
-                  <Col sm={12}>
-                    <h6
-                      className="mb-0"
-                      style={{ fontWeight: "600", fontSize: "16px" }}
-                    >
-                      {exp.role}
-                    </h6>
-                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                      {exp.company}
-                    </p>
-                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                      dal {exp.startDate ? exp.startDate.slice(0, 10) : "N/A"}
-                      {exp.endDate
-                        ? ` al ${exp.endDate.slice(0, 10)}`
-                        : " - In corso"}
-                    </p>
-                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                      {exp.area}
-                    </p>
-                    <p className="text-muted mb-0" style={{ fontSize: "14px" }}>
-                      {exp.description}
-                    </p>
-                  </Col>
+                    alt=""
+                  />
                 </div>
-              );
-            })}
-          </Row>
-        </Card.Body>
-      </Card>
-    </>
+
+                <Col>
+                  <h6 className="mb-0 fw-bold">{exp.role}</h6>
+                  <p className="text-muted mb-0">{exp.company}</p>
+                  <p className="text-muted mb-0">
+                    dal {exp.startDate?.slice(0, 10) || "N/A"}{" "}
+                    {exp.endDate
+                      ? ` al ${exp.endDate.slice(0, 10)}`
+                      : " - In corso"}
+                  </p>
+                  <p className="text-muted mb-0">{exp.area}</p>
+                  <p className="text-muted mb-0">{exp.description}</p>
+                </Col>
+              </div>
+            ))
+          )}
+        </Row>
+
+        {viewingMyProfile && isModalOpen && (
+          <ExperienceModal close={closeModal} espid={experienceIdToEdit} />
+        )}
+      </Card.Body>
+    </Card>
   );
 };
 
