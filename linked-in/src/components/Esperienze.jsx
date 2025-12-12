@@ -65,7 +65,7 @@ const Esperienze = ({ viewingMyProfile }) => {
                   }}
                 >
                   <img
-                    src="./public/image.png"
+                    src="../public/image.png"
                     style={{
                       width: "100%",
                       height: "100%",
