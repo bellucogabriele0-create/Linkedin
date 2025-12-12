@@ -12,8 +12,7 @@ const Phome = function () {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfile());
-  });
-
+  }, [dispatch]);
   return (
     <Container>
       <Row>
