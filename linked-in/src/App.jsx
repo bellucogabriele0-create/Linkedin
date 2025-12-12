@@ -12,11 +12,12 @@ import LeftSidebar from "./components/LeftSidebar";
 function App() {
   return (
     <Provider store={store}>
-      <LinkedInNavBar />
       <BrowserRouter>
         {/* NAV */}
+        <LinkedInNavBar />
         <Routes>
           <Route path="/ProfilePage" element={<ProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/" element={<Phome />} />
         </Routes>
         {/* FOOTER */}

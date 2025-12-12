@@ -1,7 +1,8 @@
-import { GET_PROFILE, GET_PROFILE_EXP } from "../actions";
+import { GET_PROFILE, GET_PROFILE_EXP, GET_POSTS_PROFILE } from "../actions";
 const initialState = {
   content: {},
   experiences: [],
+  posts: [],
 };
 const profileReducer = function (currentState = initialState, action) {
   switch (action.type) {
@@ -14,6 +15,11 @@ const profileReducer = function (currentState = initialState, action) {
       return {
         ...currentState,
         experiences: action.payload,
+      };
+    case GET_POSTS_PROFILE:
+      return {
+        ...currentState,
+        posts: action.payload,
       };
     default:
       return currentState;

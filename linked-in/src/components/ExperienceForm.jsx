@@ -1,26 +1,46 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { getProfileExperiences } from "../redux/actions";
 
-const ExperienceForm = function () {
-  //   const currentYear = new Date().getFullYear();
-  //   const years = Array.from({ length: 80 }, (_, i) => currentYear - i);
+const ExperienceForm = function ({ experienceId, close }) {
   const [exp, setExp] = useState({
+    _id: "",
     role: "",
     company: "",
     startDate: "",
-    endDate: "", // può essere null
+    endDate: "",
     description: "",
     area: "",
   });
+
+  const dispatch = useDispatch();
+
+  const userID = "6937e390d322f500151076b9";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM3ZTM5MGQzMjJmNTAwMTUxMDc2YjkiLCJpYXQiOjE3NjUyOTA2NTQsImV4cCI6MTc2NjUwMDI1NH0.VJvGSSmDcPbUfZIrUmeBRIuPb4Zj0J41kYkWAJBR4pc";
+
   const sendExp = function () {
-    const endpoint = "https://striveschool-api.herokuapp.com/api/profile/";
-    let userID = "6937e390d322f500151076b9";
-    const finalEndpoint = endpoint + userID + "/experiences";
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM3ZTM5MGQzMjJmNTAwMTUxMDc2YjkiLCJpYXQiOjE3NjUyOTA2NTQsImV4cCI6MTc2NjUwMDI1NH0.VJvGSSmDcPbUfZIrUmeBRIuPb4Zj0J41kYkWAJBR4pc";
+    const isEditing = !!experienceId;
+    const finalEndpoint = isEditing
+      ? `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${experienceId}`
+      : `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;
+    const method = isEditing ? "PUT" : "POST";
+    const successMessage = isEditing
+      ? "Esperienza aggiornata correttamente!"
+      : "Esperienza salvata correttamente!";
+    const expToSend = {
+      role: exp.role,
+      company: exp.company,
+      startDate: exp.startDate,
+      endDate: exp.endDate,
+      description: exp.description,
+      area: exp.area,
+    };
+
     fetch(finalEndpoint, {
-      method: "POST",
-      body: JSON.stringify(exp),
+      method: method,
+      body: JSON.stringify(expToSend),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -28,23 +48,84 @@ const ExperienceForm = function () {
     })
       .then((r) => {
         if (r.ok) {
-          alert("Esperienza salvata correttamente!");
-          setExp({
-            role: "",
-            company: "",
-            startDate: "",
-            endDate: "", // può essere null
-            description: "",
-            area: "",
-          });
+          alert(successMessage);
+          dispatch(getProfileExperiences());
+          if (close) close();
         } else {
           throw new Error("Errore nella response " + r.status);
         }
       })
       .catch((err) => {
         console.log("Errore", err);
+        alert("Errore nel salvataggio dell'esperienza");
       });
   };
+
+  const deleteExp = function () {
+    if (!experienceId) return;
+
+    if (!window.confirm("Sei sicuro di voler eliminare questa esperienza?")) {
+      return;
+    }
+
+    const finalEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${experienceId}`;
+
+    fetch(finalEndpoint, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((r) => {
+        if (r.ok) {
+          alert("Esperienza eliminata correttamente!");
+          dispatch(getProfileExperiences());
+          if (close) close();
+        } else {
+          throw new Error("Errore nell'eliminazione " + r.status);
+        }
+      })
+      .catch((err) => {
+        console.log("Errore", err);
+        alert("Errore nell'eliminazione dell'esperienza");
+      });
+  };
+
+  const getExp = useCallback(
+    function (experienceId) {
+      const finalEndpoint = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${experienceId}`;
+
+      fetch(finalEndpoint, { headers: { Authorization: `Bearer ${token}` } })
+        .then((r) => {
+          if (r.ok) return r.json();
+          else throw new Error("Errore nel recupero esperienza " + r.status);
+        })
+        .then((data) => {
+          console.log("Data ricevuta:", data);
+          setExp({
+            _id: data._id || "",
+            role: data.role || "",
+            company: data.company || "",
+            startDate: data.startDate ? data.startDate.slice(0, 10) : "",
+            endDate: data.endDate ? data.endDate.slice(0, 10) : "",
+            description: data.description || "",
+            area: data.area || "",
+          });
+        })
+        .catch((err) => {
+          console.error("Errore completo:", err);
+          alert("Errore nel caricamento dell'esperienza");
+        });
+    },
+    [userID, token]
+  );
+
+  useEffect(() => {
+    if (experienceId) {
+      getExp(experienceId);
+    }
+  }, [experienceId, getExp]);
+
   return (
     <Form
       onSubmit={(e) => {
@@ -67,19 +148,7 @@ const ExperienceForm = function () {
           required
         />
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Tipo di impiego</Form.Label>
-        <Form.Select>
-          <option>Tempo pieno</option>
-          <option>Part-time</option>
-          <option>Autonomo</option>
-          <option>Freelance</option>
-          <option>A contratto</option>
-          <option>Stage</option>
-          <option>Apprendistato</option>
-          <option>Stagionale</option>
-        </Form.Select>
-      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formCompany">
         <Form.Label>Azienda o organizzazione*</Form.Label>
         <Form.Control
@@ -95,38 +164,7 @@ const ExperienceForm = function () {
           required
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formCheckbox">
-        <Form.Check type="checkbox" label="Attualmente ricopro questo ruolo" />
-      </Form.Group>
-      {/* <Row className="mb-3">
-        <Form.Group as={Col} controlId="formMonth">
-          <Form.Label>Mese</Form.Label>
-          <Form.Select defaultValue="Month">
-            <option>Month</option>
-            <option>Gennaio</option>
-            <option>Febbraio</option>
-            <option>Marzo</option>
-            <option>Aprile</option>
-            <option>Maggio</option>
-            <option>Giugno</option>
-            <option>Luglio</option>
-            <option>Agosto</option>
-            <option>Settembre</option>
-            <option>Ottobre</option>
-            <option>Novembre</option>
-            <option>Dicembre</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group as={Col} controlId="formYear">
-          <Form.Label>Anno</Form.Label>
-          <Form.Select defaultValue="Year">
-            <option>Year</option>
-            {years.map((y) => {
-              <option>{y}</option>;
-            })}
-          </Form.Select>
-        </Form.Group>
-      </Row> */}
+
       <Row>
         <Form.Group as={Col} className="mb-3" controlId="formStartDate">
           <Form.Label>Inserisci data d'inizio</Form.Label>
@@ -156,6 +194,7 @@ const ExperienceForm = function () {
           />
         </Form.Group>
       </Row>
+
       <Form.Group className="mb-3" controlId="formArea">
         <Form.Label>Località</Form.Label>
         <Form.Control
@@ -171,6 +210,7 @@ const ExperienceForm = function () {
           required
         />
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="formDescription">
         <Form.Label>Descrizione</Form.Label>
         <Form.Control
@@ -187,9 +227,19 @@ const ExperienceForm = function () {
           required
         />
       </Form.Group>
-      <Button variant="transparent">Elimina</Button>
+
+      {experienceId && (
+        <Button
+          variant="danger"
+          className="me-2"
+          type="button"
+          onClick={deleteExp}
+        >
+          Elimina
+        </Button>
+      )}
       <Button variant="primary" type="submit">
-        Salva
+        {experienceId ? "Salva Modifiche" : "Salva"}
       </Button>
     </Form>
   );
