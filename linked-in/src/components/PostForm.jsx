@@ -17,8 +17,8 @@ const PostForm = function ({ postId, close }) {
       : `https://striveschool-api.herokuapp.com/api/posts/`;
     const method = isEditing ? "PUT" : "POST";
     const successMessage = isEditing
-      ? "Esperienza aggiornata correttamente!"
-      : "Esperienza salvata correttamente!";
+      ? "Post aggiornato correttamente!"
+      : "Post inviato correttamente!";
     const postToSend = {
       text: post.text,
     };
