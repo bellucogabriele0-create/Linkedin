@@ -108,7 +108,7 @@ const PostForm = function ({ postId, close }) {
       }}
     >
       <Form.Group className="mb-3" controlId="formDescription">
-        <Form.Label>Crea Post</Form.Label>
+        <Form.Label> {postId ? "Modifica Post" : "Crea Post"}</Form.Label>
         <Form.Control
           as="textarea"
           rows={6}
