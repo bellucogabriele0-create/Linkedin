@@ -65,7 +65,7 @@ const Esperienze = ({ viewingMyProfile }) => {
                   }}
                 >
                   <img
-                    src={exp.image || "https://placehold.co/50x50?text=Logo"}
+                    src="./public/image.png"
                     style={{
                       width: "100%",
                       height: "100%",

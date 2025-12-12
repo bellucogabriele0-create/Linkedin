@@ -18,7 +18,7 @@ function Ppost() {
           "https://striveschool-api.herokuapp.com/api/posts/",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // USO DEL TOKEN
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -105,7 +105,7 @@ function Ppost() {
             )}
 
             <Row
-              className="pt-3"
+              className="pt-3 d-flex justify-content-between"
               style={{
                 textAlign: "center",
                 borderTop: "1px solid #e0e0e0",
