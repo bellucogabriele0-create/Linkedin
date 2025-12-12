@@ -95,12 +95,11 @@ export default function ProfileSidebar() {
                 <p className="small text-muted mb-2">
                   Rimani aggiornato sulle ultime novità del settore.
                 </p>
+                <span className="badge bg-light text-muted border small">
+                  Promosso
+                </span>
               </div>
             </div>
-
-            <span className="badge bg-light text-muted border small">
-              Promosso
-            </span>
           </div>
 
           <button className="btn btn-outline-primary btn-sm rounded-pill px-4 mt-2">
