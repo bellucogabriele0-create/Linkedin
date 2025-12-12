@@ -50,15 +50,15 @@ export default function ProfileSidebar() {
     <div className="d-flex flex-column gap-2 mt-2">
       <div className="card border-0 shadow-sm">
         <div className="card-body">
-          <h6 className="small fw-bold mb-1">
-            Modifica profilo pubblico e URL
-          </h6>
-          <a
-            href="#!"
-            className="small text-muted text-decoration-none d-block mb-3"
-          >
-            www.linkedin.com/in/lorenzo-di-lorenzo
-          </a>
+          <div className="d-flex align-items-start mb-3">
+            <i className="bi bi-pencil-fill me-2 fs-5"></i>
+            <div>
+              <h6 className="small fw-bold mb-1" style={{ cursor: "pointer" }}>
+                Profilo pubblico e URL
+              </h6>
+              <span className="small text-muted">Modifica link</span>
+            </div>
+          </div>
 
           <div className="d-flex align-items-start">
             <i className="bi bi-pencil-fill me-2 fs-5"></i>
