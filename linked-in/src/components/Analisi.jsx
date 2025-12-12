@@ -1,6 +1,6 @@
-import { Card, Col, Row, Button } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 
-const Analisi = function () {
+const Analisi = () => {
   return (
     <Card className="mb-4 shadow-sm">
       <Card.Body className="pb-0">
@@ -8,7 +8,6 @@ const Analisi = function () {
         <small className="text-muted">
           <i className="bi bi-eye-fill p-1"></i>Visibile solo a te
         </small>
-
         <Row className="mt-3">
           <Col className="d-flex gap-3">
             <i className="bi bi-people-fill fs-3"></i>

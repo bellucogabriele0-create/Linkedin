@@ -1,6 +1,7 @@
 import { Container, Col, Row } from "react-bootstrap";
-import Competenze from "./Competenze";
 import Formazione from "./Formazione";
+import Competenze from "./Competenze";
+import Analisi from "./Analisi";
 import HeaderProfile from "./HeaderProfile";
 import AnalisiAttivita from "./AnalisiAttivita";
 import Esperienze from "./Esperienze";
@@ -38,6 +39,7 @@ const ProfilePage = () => {
       <Row>
         <Col xs={12} md={9}>
           <HeaderProfile />
+          {viewingMyProfile && <Analisi />}
           <AnalisiAttivita viewingMyProfile={viewingMyProfile} />
           <Esperienze viewingMyProfile={viewingMyProfile} userId={userId} />
           {viewingMyProfile && <Formazione />}
