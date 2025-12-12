@@ -6,6 +6,8 @@ export default function LinkedInNavBar() {
   const profile = useSelector((state) => state.profile.content);
   const navigate = useNavigate();
   const location = useLocation();
+  const imgNavProfile =
+    "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
   const initial = profile?.name?.charAt(0).toUpperCase() || "U";
 
   return (
@@ -41,15 +43,11 @@ export default function LinkedInNavBar() {
               fontWeight: "600",
             }}
           >
-            {profile?.image ? (
-              <img
-                src={profile.image}
-                alt="profile"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            ) : (
-              initial
-            )}
+            <img
+              src={imgNavProfile}
+              alt="profile"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
           <Form
             style={{
@@ -218,34 +216,17 @@ export default function LinkedInNavBar() {
                 cursor: "pointer",
               }}
             >
-              {profile?.image ? (
-                <img
-                  src={profile.image}
-                  alt="profile"
-                  style={{
-                    width: 26,
-                    height: 26,
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                <div
-                  style={{
-                    width: 26,
-                    height: 26,
-                    borderRadius: "50%",
-                    backgroundColor: "#ddd",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: 14,
-                    fontWeight: 600,
-                  }}
-                >
-                  {initial}
-                </div>
-              )}
+              <img
+                src={imgNavProfile}
+                alt="profile"
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+
               <span style={{ fontSize: 12 }}>Tu</span>
             </div>
             <div

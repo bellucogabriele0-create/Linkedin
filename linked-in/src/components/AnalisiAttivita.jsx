@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPostsProfile } from "../redux/actions";
 import PostModal from "./PostModal";
 
-const AnalisiAttivita = () => {
+const AnalisiAttivita = ({ viewingMyProfile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postIdToEdit, setPostIdToEdit] = useState(null);
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const AnalisiAttivita = () => {
     return currentState.profile.posts;
   });
   const openModal = (postId = null) => {
+    if (!viewingMyProfile) return;
     setPostIdToEdit(postId);
     setIsModalOpen(true);
   };
@@ -93,14 +94,16 @@ const AnalisiAttivita = () => {
                   </p>
                 </div>
                 <div className="d-flex align-items-center">
-                  <Button
-                    variant="outline-primary px-2"
-                    size="sm"
-                    style={{ borderRadius: "30px" }}
-                    onClick={() => openModal()}
-                  >
-                    Crea un post
-                  </Button>
+                  {viewingMyProfile && (
+                    <Button
+                      variant="outline-primary px-2"
+                      size="sm"
+                      style={{ borderRadius: "30px" }}
+                      onClick={() => openModal()}
+                    >
+                      Crea un post
+                    </Button>
+                  )}
                   {isModalOpen && (
                     <PostModal close={closeModal} postId={postIdToEdit} />
                   )}

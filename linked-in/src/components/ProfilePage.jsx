@@ -38,7 +38,7 @@ const ProfilePage = () => {
       <Row>
         <Col xs={12} md={9}>
           <HeaderProfile />
-          <AnalisiAttivita />
+          <AnalisiAttivita viewingMyProfile={viewingMyProfile} />
           <Esperienze viewingMyProfile={viewingMyProfile} userId={userId} />
           {viewingMyProfile && <Formazione />}
           {viewingMyProfile && <Competenze />}

@@ -13,11 +13,7 @@ const PostModal = function ({ close, postId }) {
         <PostForm close={close} postId={postId} />
       </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={close}>
-          Close
-        </Button>
-      </Modal.Footer>
+    
     </Modal>
   );
 };

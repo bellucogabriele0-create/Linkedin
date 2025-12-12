@@ -9,12 +9,14 @@ import ProfilePage from "./components/ProfilePage";
 import Phome from "./PROVAG/Phome";
 import "font-awesome/css/font-awesome.min.css";
 import LeftSidebar from "./components/LeftSidebar";
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         {/* NAV */}
         <LinkedInNavBar />
+        <ScrollToTop />
         <Routes>
           <Route path="/ProfilePage" element={<ProfilePage />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />

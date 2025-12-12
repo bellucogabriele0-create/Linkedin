@@ -1,17 +1,26 @@
-import { Container, Col, Row, Card, Form } from "react-bootstrap";
+import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import PostModal from "../components/PostModal";
 
 function Paggiungi() {
   const profile = useSelector((state) => state.profile.content);
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const initial = profile?.name?.charAt(0).toUpperCase() || "U";
   return (
     <Container className="mt-3">
       <Row className="justify-content-center">
         <Card className="p-3">
-          <Row className="align-items-center mb-2">
+          <Row className="align-items-center mb-2 d-flex">
             <Col xs="auto">
               <div
                 onClick={() => navigate("/ProfilePage")}
@@ -44,15 +53,17 @@ function Paggiungi() {
               </div>
             </Col>
 
-            <Col>
-              <Form.Control
-                type="text"
-                placeholder="Crea un post"
-                style={{
-                  borderRadius: "30px",
-                  padding: "10px 15px",
-                }}
-              />
+            <Col className="d-flex">
+              <Button
+                className="flex-grow-1 text-start border-black"
+                variant="transparent px-2"
+                size="sm"
+                style={{ borderRadius: "30px" }}
+                onClick={() => openModal()}
+              >
+                Crea un post
+              </Button>
+              {isModalOpen && <PostModal close={closeModal} />}
             </Col>
           </Row>
 
