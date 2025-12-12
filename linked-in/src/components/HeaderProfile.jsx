@@ -1,10 +1,12 @@
 import { Row, Col, Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const HeaderProfile = function () {
   const profileData = useSelector((currentState) => {
     return currentState.profile.content;
   });
+  const { userId } = useParams();
   return (
     <Row className="my-3">
       <Col xs={12}>
@@ -32,15 +34,31 @@ const HeaderProfile = function () {
             <Card.Text>{profileData.bio}</Card.Text>
             <Row>
               <Col>
-                <Button variant="primary" className="rounded-pill me-1">
-                  Disponibile per
-                </Button>
-                <Button variant="outline-primary" className="rounded-pill m-1">
-                  Aggiungi sezione
-                </Button>
-                <Button variant="outline-primary" className="rounded-pill m-1">
-                  Migliora profilo
-                </Button>
+                {userId ? (
+                  <>
+                    <Button variant="primary" className="rounded-pill me-1">
+                      Contatta
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="primary" className="rounded-pill me-1">
+                      Disponibile per
+                    </Button>
+                    <Button
+                      variant="outline-primary"
+                      className="rounded-pill m-1"
+                    >
+                      Aggiungi sezione
+                    </Button>
+                    <Button
+                      variant="outline-primary"
+                      className="rounded-pill m-1"
+                    >
+                      Migliora profilo
+                    </Button>
+                  </>
+                )}
                 <Button
                   variant="outline-primary"
                   className="rounded-circle ms-1"
