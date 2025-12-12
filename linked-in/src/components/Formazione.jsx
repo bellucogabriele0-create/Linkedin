@@ -18,7 +18,6 @@ function Formazione() {
             icon={faSchool}
             style={{ color: "#acacac", fontSize: "50px" }}
           />
-
           <div>
             <Card.Text className="fw-bold">Scuola Universitaria</Card.Text>
             <Card.Text>Laurea, campo di studi</Card.Text>
