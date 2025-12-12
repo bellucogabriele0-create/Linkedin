@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../redux/actions/index";
+import { Link } from "react-router-dom";
 
 export default function LeftSidebar() {
   const dispatch = useDispatch();
@@ -33,14 +34,16 @@ export default function LeftSidebar() {
         ></div>
 
         <div className="card-body text-center">
-          <img
-            src={image}
-            className="rounded-circle border border-2 border-white mb-2 mt-n5"
-            alt="avatar"
-            style={{ width: "80px", height: "80px", objectFit: "cover" }}
-          />
+          <Link to="/ProfilePage" className="text-decoration-none text-dark">
+            <img
+              src={image}
+              className="rounded-circle border border-2 border-white mb-2 mt-n5"
+              alt="avatar"
+              style={{ width: "80px", height: "80px", objectFit: "cover" }}
+            />
 
-          <h6 className="fw-bold mb-0">{fullName}</h6>
+            <h6 className="fw-bold mb-0">{fullName}</h6>
+          </Link>
 
           <p className="text-muted small mb-1">{title}</p>
 

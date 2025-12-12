@@ -1,17 +1,11 @@
 export const GET_PROFILE = "GET_PROFILE";
 export const GET_PROFILE_EXP = "GET_PROFILE_EXP";
-// GABRIELE
 export const GET_FRIENDS = "GET_FRIENDS";
 export const GET_FRIENDS_ERROR = "GET_FRIENDS_ERROR";
 
 export const GET_POSTS_PROFILE = "GET_POSTS_PROFILE";
-// _____
-export const getProfile = (
-  // ATTENZIONE
-  userId = "me"
-) => {
+export const getProfile = (userId = "me") => {
   return (dispatch) => {
-    // const currentState = getState(); servirà per fetch su profilo specifico
     const endpoint = `https://striveschool-api.herokuapp.com/api/profile/${userId}`;
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM3ZTM5MGQzMjJmNTAwMTUxMDc2YjkiLCJpYXQiOjE3NjUyOTA2NTQsImV4cCI6MTc2NjUwMDI1NH0.VJvGSSmDcPbUfZIrUmeBRIuPb4Zj0J41kYkWAJBR4pc";
@@ -54,7 +48,6 @@ export const getProfileExperiences = (userId = "me") => {
   };
 };
 
-// PROVA GABRIELE PAMICI-GET ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 export const getFriendsAction = () => {
   return async (dispatch) => {
     const endpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -103,9 +96,7 @@ export const getProfileById = (userId) => {
     }
   };
 };
-// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// GET POST PROFILE
 export const getPostsProfile = () => {
   return (dispatch) => {
     const endpoint = "https://striveschool-api.herokuapp.com/api/posts/";

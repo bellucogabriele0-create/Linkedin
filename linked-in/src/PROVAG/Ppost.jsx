@@ -1,10 +1,12 @@
 import { Card, Row, Col, Image, Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Ppost() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTNhOTRlZDhkYTViODAwMTVmMjU5MTgiLCJpYXQiOjE3NjU0NDY4OTMsImV4cCI6MTc2NjY1NjQ5M30.FO1eZlUO3haf8iza95j-cL651sF3QIvICdC6_GkvslU";
@@ -16,7 +18,7 @@ function Ppost() {
           "https://striveschool-api.herokuapp.com/api/posts/",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // USO DEL TOKEN
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -62,11 +64,28 @@ function Ppost() {
                     "https://via.placeholder.com/100?text=User"
                   }
                   roundedCircle
-                  style={{ width: "48px", height: "48px", objectFit: "cover" }}
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    objectFit: "cover",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate(`/profile/${post.user?._id}`);
+                  }}
                 />
               </Col>
               <Col>
-                <div style={{ fontWeight: 600, fontSize: "16px" }}>
+                <div
+                  style={{
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate(`/profile/${post.user?._id}`);
+                  }}
+                >
                   {post.user?.name} {post.user?.surname}
                 </div>
                 <div style={{ fontSize: "14px", color: "grey" }}>
@@ -86,7 +105,7 @@ function Ppost() {
             )}
 
             <Row
-              className="pt-3"
+              className="pt-3 d-flex justify-content-between"
               style={{
                 textAlign: "center",
                 borderTop: "1px solid #e0e0e0",
