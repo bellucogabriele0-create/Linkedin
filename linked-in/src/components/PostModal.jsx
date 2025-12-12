@@ -1,18 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import ExperienceForm from "./ExperienceForm";
+import PostForm from "./PostForm";
 
-const ExperienceModal = function ({ close, espid }) {
+const PostModal = function ({ close, postId }) {
   return (
     <Modal show onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>
-          {espid ? "Modifica Esperienza" : "Aggiungi Esperienza"}
-        </Modal.Title>
+        <Modal.Title>{postId ? "Modifica Post" : "Crea Post"}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <ExperienceForm experienceId={espid} close={close} />
+        <PostForm close={close} postId={postId} />
       </Modal.Body>
 
       <Modal.Footer>
@@ -24,4 +22,4 @@ const ExperienceModal = function ({ close, espid }) {
   );
 };
 
-export default ExperienceModal;
+export default PostModal;
