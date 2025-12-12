@@ -12,7 +12,7 @@ const Phome = function () {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProfile());
-  }, [dispatch]);
+  });
 
   return (
     <Container>
@@ -24,7 +24,7 @@ const Phome = function () {
         <Col xs={12} lg={6}>
           <Paggiungi />
           <p>
-            -------------------------------------------- seleziona la
+            ---------------------------------------------------- seleziona la
             visualizzazione del feed
             <strong className=""> Più rilevanti per prima ▼ </strong>
           </p>
