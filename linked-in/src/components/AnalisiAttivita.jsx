@@ -113,7 +113,9 @@ const AnalisiAttivita = ({ viewingMyProfile }) => {
               {allPosts.filter((post) => post.username === profileData.username)
                 .length > 0 ? (
                 allPosts
+
                   .filter((post) => post.username === profileData.username)
+                  .reverse()
                   .map((post) => (
                     <Col
                       key={post._id}
