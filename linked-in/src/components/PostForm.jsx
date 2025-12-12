@@ -8,8 +8,6 @@ const PostForm = function ({ postId, close }) {
     text: "",
   });
   const dispatch = useDispatch();
-
-  //   const endpoint = "https://striveschool-api.herokuapp.com/api/posts/";
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM3ZTM5MGQzMjJmNTAwMTUxMDc2YjkiLCJpYXQiOjE3NjUyOTA2NTQsImV4cCI6MTc2NjUwMDI1NH0.VJvGSSmDcPbUfZIrUmeBRIuPb4Zj0J41kYkWAJBR4pc";
   const postProfile = function () {
@@ -114,7 +112,7 @@ const PostForm = function ({ postId, close }) {
         <Form.Control
           as="textarea"
           rows={6}
-          placeholder="Descrivi le tue mansioni"
+          placeholder="Scrivi qualcosa..."
           value={post.text}
           onChange={(e) => {
             setPost({
