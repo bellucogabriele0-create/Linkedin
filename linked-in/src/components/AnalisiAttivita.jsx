@@ -113,13 +113,13 @@ const AnalisiAttivita = ({ viewingMyProfile }) => {
 
                           <p style={{ whiteSpace: "pre-wrap" }}>{post.text}</p>
 
-                          {/* {post.image && (
+                          {post.image && (
                             <Card.Img
                               className="mb-2"
                               src={post.image}
                               style={{ width: "100%", height: "auto" }}
                             />
-                          )} */}
+                          )}
 
                           <Row
                             className="pt-3"
