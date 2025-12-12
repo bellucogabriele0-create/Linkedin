@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsProfile } from "../redux/actions";
 import PostModal from "./PostModal";
-import Analisi from "./Analisi";
 
 const AnalisiAttivita = ({ viewingMyProfile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +32,6 @@ const AnalisiAttivita = ({ viewingMyProfile }) => {
   return (
     <Row>
       <Col sm={12}>
-        {viewingMyProfile && <Analisi />}
         <Card className="shadow-sm mb-4">
           <Card.Body className="pb-0">
             <Row className="mt-2 d-flex flex-column">
