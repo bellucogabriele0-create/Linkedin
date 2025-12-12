@@ -1,14 +1,11 @@
 import { Navbar, Nav, Container, Form, FormControl } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function LinkedInNavBar() {
-  const profile = useSelector((state) => state.profile.content);
   const navigate = useNavigate();
   const location = useLocation();
   const imgNavProfile =
     "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
-  const initial = profile?.name?.charAt(0).toUpperCase() || "U";
 
   return (
     <>

@@ -18,8 +18,7 @@ const HeaderProfile = function () {
             <div className="position-absolute start-0 translate-middle-y ms-3">
               <Card.Img
                 src={profileData.image}
-                className="rounded-circle border border-5 border-white object-fit-cover"
-                style={{ width: 150, height: 150 }}
+                className="rounded-circle border border-5 border-white object-fit-cover profile-pic"
               />
             </div>
           </div>
